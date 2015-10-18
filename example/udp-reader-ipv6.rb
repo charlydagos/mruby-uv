@@ -2,8 +2,7 @@
 begin; require 'mruby-uv'; rescue Exception; end
 
 r = UV::UDP.new()
-r.bind(UV::ip4_addr('127.0.0.1', 8888))
-puts "bound to #{r.getsockname}"
+r.bind6(UV::ip6_addr('::1', 8888))
 r.recv_start {|data, addr, flags|
   if data && data.size > 0
     puts data
